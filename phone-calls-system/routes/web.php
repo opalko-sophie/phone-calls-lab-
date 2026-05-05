@@ -2,14 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CallController as AdminCallController;
+use App\Http\Controllers\MainController;
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [MainController::class, 'index']);
 
-Route::get('/dashboard', function () {
-    return redirect()->route('admin.calls.index');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [MainController::class, 'dashboard'])
+    ->middleware(['auth'])
+    ->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::resource('admin/calls', AdminCallController::class)

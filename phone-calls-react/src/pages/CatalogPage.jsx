@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { apiUrl } from '../api';
 
 function CatalogPage() {
   const [calls, setCalls] = useState([]);
@@ -9,7 +10,7 @@ function CatalogPage() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/calls')
+    fetch(apiUrl('/calls'))
       .then((response) => {
         if (!response.ok) {
           throw new Error('Помилка отримання даних');

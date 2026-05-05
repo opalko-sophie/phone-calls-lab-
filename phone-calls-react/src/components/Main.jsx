@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
+import { apiUrl } from "../api";
 
 function Main() {
   const [calls, setCalls] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/calls")
+    fetch(apiUrl("/calls"))
       .then((res) => res.json())
       .then((data) => setCalls(data))
       .catch((err) => console.error(err));

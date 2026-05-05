@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { apiUrl } from '../api';
 
 function CallDetails() {
   const { id } = useParams();
@@ -8,7 +9,7 @@ function CallDetails() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/api/calls/${id}`)
+    fetch(apiUrl(`/calls/${id}`))
       .then((response) => {
         if (!response.ok) {
           throw new Error('Дзвінок не знайдено');
